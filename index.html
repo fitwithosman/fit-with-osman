@@ -181,35 +181,49 @@
   .social-rail svg{width:17px;height:17px;}
   .header-right{display:flex;align-items:center;gap:14px;}
 
-  /* ===== three-dot quick menu ===== */
-  .dots-wrap{position:relative;}
-  .dots-btn{
-    width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.06);
+  /* ===== Account menu ===== */
+  .account-wrap{position:relative;}
+  .account-btn{
+    height:40px;border-radius:20px;background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.08);color:var(--offwhite);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    display:flex;align-items:center;gap:8px;flex-shrink:0;
+    padding:0 16px 0 14px;font-size:13.5px;font-weight:700;
+    letter-spacing:0.03em;text-transform:uppercase;
   }
-  .dots-btn:hover{background:rgba(255,255,255,0.12);}
-  .dots-btn svg{width:18px;height:18px;}
-  .dots-menu{
+  .account-btn:hover{background:rgba(255,255,255,0.12);}
+  .account-btn svg{width:17px;height:17px;flex-shrink:0;}
+  .account-btn .acc-dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:none;flex-shrink:0;}
+  body.logged-in .account-btn .acc-dot{display:block;}
+  .account-menu{
     display:none;position:absolute;top:calc(100% + 10px);right:0;z-index:600;
     background:#fff;border-radius:14px;box-shadow:0 20px 50px -14px rgba(0,0,0,0.5);
-    min-width:230px;max-width:min(280px, calc(100vw - 32px));
+    min-width:240px;max-width:min(290px, calc(100vw - 32px));
     padding:8px;border:1px solid #EAE6D9;
     max-height:calc(100vh - 100px);overflow-y:auto;
   }
-  .dots-menu.open{display:block;}
-  .dots-menu button, .dots-menu a{
+  .account-menu.open{display:block;}
+  .account-menu .am-you{
+    display:flex;align-items:center;gap:10px;padding:10px 12px 12px;
+  }
+  .account-menu .am-you .avatar{
+    width:34px;height:34px;border-radius:50%;background:var(--green);color:#0A1424;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;
+  }
+  .account-menu .am-you .am-you-text{display:flex;flex-direction:column;min-width:0;}
+  .account-menu .am-you .am-label{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray);font-weight:700;}
+  .account-menu .am-you .am-name{font-size:14.5px;font-weight:700;color:var(--text-dark);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .account-menu button, .account-menu a{
     display:flex;align-items:center;width:100%;text-align:left;
     background:none;border:none;padding:12px 14px;border-radius:9px;
     font-size:14.5px;font-weight:600;color:var(--text-dark);
   }
-  .dots-menu button:hover, .dots-menu a:hover{background:var(--offwhite-2);}
-  .dots-menu .dm-primary{color:var(--green-dim);}
-  .dots-menu .dm-divider{height:1px;background:#EFECE2;margin:6px 4px;}
-  .dots-menu .dm-locked{color:var(--gray-dark);}
-  .dots-menu .dm-locked .lock-ic{width:13px;height:13px;margin-right:8px;flex-shrink:0;}
+  .account-menu button:hover, .account-menu a:hover{background:var(--offwhite-2);}
+  .account-menu .dm-primary{color:var(--green-dim);}
+  .account-menu .dm-divider{height:1px;background:#EFECE2;margin:6px 4px;}
+  .account-menu .dm-locked{color:var(--gray-dark);}
+  .account-menu .dm-locked .lock-ic{width:13px;height:13px;margin-right:8px;flex-shrink:0;}
   @media (max-width:480px){
-    .dots-menu{position:fixed;top:auto;bottom:16px;left:16px;right:16px;max-width:none;}
+    .account-menu{position:fixed;top:auto;bottom:16px;left:16px;right:16px;max-width:none;}
   }
 
   .burger{
@@ -237,6 +251,11 @@
     nav.main-nav{display:none;}
     .burger{display:flex;}
     .header-right .social-rail{display:none;}
+  }
+  @media (max-width:400px){
+    .brand{font-size:16px;}
+    .account-btn{padding:0 12px 0 10px;gap:6px;font-size:12px;}
+    .account-btn span:not(.acc-dot){display:none;}
   }
 
   /* ============ HERO ============ */
@@ -644,6 +663,16 @@
   footer{background:var(--navy);color:var(--gray);padding:40px 0;text-align:center;font-size:13px;}
   footer .brand{justify-content:center;margin-bottom:10px;}
   footer .social-rail{justify-content:center;margin:18px 0;}
+  footer .footer-links{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+    gap:8px 22px;margin:6px 0 22px;
+  }
+  footer .footer-links a, footer .footer-links button{
+    background:none;border:none;color:var(--gray);font-size:13.5px;font-weight:600;
+    font-family:var(--font-body);padding:2px 0;
+  }
+  footer .footer-links a:hover, footer .footer-links button:hover{color:var(--offwhite);}
+  footer .footer-cta{margin:4px 0 22px;}
 
   .skip-link{position:absolute;left:-999px;top:0;background:var(--green);color:#0A1424;padding:10px;z-index:9999;}
   .skip-link:focus{left:10px;}
@@ -675,7 +704,6 @@
       <a href="#contact">Contact</a>
       <a href="#location">Location</a>
       <a href="https://wa.me/923297472004" target="_blank" rel="noopener" class="btn btn-primary btn-sm" data-requires-auth="true">Get Your Personal Plan</a>
-      <div class="auth-controls" id="auth-controls-desktop"></div>
     </nav>
     <div class="header-right">
       <div class="social-rail" aria-label="Social links">
@@ -692,11 +720,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
         </a>
       </div>
-      <div class="dots-wrap">
-        <button class="dots-btn" id="dots-btn" aria-haspopup="true" aria-expanded="false" aria-controls="dots-menu" aria-label="More options">
-          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+      <div class="account-wrap">
+        <button class="account-btn" id="account-btn" aria-haspopup="true" aria-expanded="false" aria-controls="account-menu" aria-label="Account menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.2"/><path d="M4.5 20c1.4-3.6 4.4-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg>
+          <span>Account</span>
+          <span class="acc-dot" aria-hidden="true"></span>
         </button>
-        <div class="dots-menu" id="dots-menu" role="menu"></div>
+        <div class="account-menu" id="account-menu" role="menu"></div>
       </div>
       <button class="burger" id="burger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -907,6 +937,17 @@
 <footer>
   <div class="wrap">
     <div class="brand" style="justify-content:center;color:var(--offwhite);"><span class="dot"></span>FIT WITH OSMAN</div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#programs">Fitness Paths</a>
+      <a href="#guides-lead" data-requires-auth="true">Free Guides</a>
+      <a href="#calculator" data-requires-auth="true">Calculator</a>
+      <a href="#contact">Contact</a>
+      <a href="#location">Location</a>
+      <button type="button" id="footer-account-btn">Account</button>
+    </nav>
+    <div class="footer-cta">
+      <a href="https://wa.me/923297472004" target="_blank" rel="noopener" class="btn btn-primary btn-sm" data-requires-auth="true">Get Your Personal Plan</a>
+    </div>
     <div class="social-rail">
       <a href="https://wa.me/923297472004" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
       <a href="mailto:fitwithosman@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
@@ -1028,7 +1069,7 @@ function renderAuthState(){
   var loggedIn = !!session;
   document.body.classList.toggle('logged-in', loggedIn);
 
-  ['auth-controls-desktop','auth-controls-mobile'].forEach(function(id){
+  ['auth-controls-mobile'].forEach(function(id){
     var el = document.getElementById(id);
     if(!el) return;
     if(loggedIn){
@@ -1052,16 +1093,15 @@ function renderAuthState(){
     }
   });
 
-  renderDotsMenu(loggedIn, session);
+  renderAccountMenu(loggedIn, session);
 }
 
-function renderDotsMenu(loggedIn, session){
-  var menu = document.getElementById('dots-menu');
+function renderAccountMenu(loggedIn, session){
+  var menu = document.getElementById('account-menu');
   if(!menu) return;
 
   var lockIcon = '<svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>';
   var navItems =
-    '<a href="#programs" role="menuitem">Programs</a>' +
     '<a href="#programs" role="menuitem">Fitness Paths</a>' +
     '<a href="#guides-lead" role="menuitem" data-requires-auth="true">'+(loggedIn?'':lockIcon)+'Free Guides</a>' +
     '<a href="#calculator" role="menuitem" data-requires-auth="true">'+(loggedIn?'':lockIcon)+'Calculator</a>' +
@@ -1072,19 +1112,24 @@ function renderDotsMenu(loggedIn, session){
 
   var authItems;
   if(loggedIn){
-    authItems = '<div class="dm-divider"></div><button type="button" role="menuitem" id="dots-logout">Logout</button>';
+    var initial = (session.name || session.email || '?').trim().charAt(0).toUpperCase();
+    var youBlock = '<div class="am-you"><span class="avatar">'+initial+'</span>' +
+      '<span class="am-you-text"><span class="am-label">My Account</span>' +
+      '<span class="am-name">'+(session.name || session.email)+'</span></span></div>' +
+      '<div class="dm-divider"></div>';
+    authItems = youBlock + navItems + '<div class="dm-divider"></div><button type="button" role="menuitem" id="account-logout">Logout</button>';
+    menu.innerHTML = authItems;
   } else {
-    authItems = '<div class="dm-divider"></div>' +
-      '<button type="button" role="menuitem" data-open-auth="signup">Sign Up</button>' +
-      '<button type="button" role="menuitem" data-open-auth="signin">Sign In</button>';
+    authItems = '<button type="button" role="menuitem" data-open-auth="signup">Sign Up</button>' +
+      '<button type="button" role="menuitem" data-open-auth="signin">Sign In</button>' +
+      '<div class="dm-divider"></div>';
+    menu.innerHTML = authItems + navItems;
   }
 
-  menu.innerHTML = loggedIn ? (navItems + authItems) : (authItems + navItems);
-
   if(loggedIn){
-    document.getElementById('dots-logout').addEventListener('click', function(){
+    document.getElementById('account-logout').addEventListener('click', function(){
       authClearSession();
-      closeDotsMenu();
+      closeAccountMenu();
       renderAuthState();
     });
   }
@@ -1092,34 +1137,42 @@ function renderDotsMenu(loggedIn, session){
   // Close the dropdown whenever any item inside it is activated,
   // whether it's a plain nav link, a gated link, or an auth trigger.
   menu.querySelectorAll('a, button').forEach(function(item){
-    if(item.id === 'dots-logout') return;
-    item.addEventListener('click', function(){ closeDotsMenu(); });
+    if(item.id === 'account-logout') return;
+    item.addEventListener('click', function(){ closeAccountMenu(); });
   });
 }
 
-function openDotsMenu(){
-  document.getElementById('dots-menu').classList.add('open');
-  document.getElementById('dots-btn').setAttribute('aria-expanded','true');
+function openAccountMenu(){
+  document.getElementById('account-menu').classList.add('open');
+  document.getElementById('account-btn').setAttribute('aria-expanded','true');
 }
-function closeDotsMenu(){
-  document.getElementById('dots-menu').classList.remove('open');
-  document.getElementById('dots-btn').setAttribute('aria-expanded','false');
+function closeAccountMenu(){
+  document.getElementById('account-menu').classList.remove('open');
+  document.getElementById('account-btn').setAttribute('aria-expanded','false');
 }
 (function(){
-  var btn = document.getElementById('dots-btn');
-  var menu = document.getElementById('dots-menu');
+  var btn = document.getElementById('account-btn');
+  var menu = document.getElementById('account-menu');
   btn.addEventListener('click', function(e){
     e.stopPropagation();
     var isOpen = menu.classList.contains('open');
-    if(isOpen){ closeDotsMenu(); } else { openDotsMenu(); }
+    if(isOpen){ closeAccountMenu(); } else { openAccountMenu(); }
   });
+  var footerBtn = document.getElementById('footer-account-btn');
+  if(footerBtn){
+    footerBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      btn.scrollIntoView({behavior:'smooth', block:'center'});
+      openAccountMenu();
+    });
+  }
   document.addEventListener('click', function(e){
     if(menu.classList.contains('open') && !menu.contains(e.target) && e.target !== btn){
-      closeDotsMenu();
+      closeAccountMenu();
     }
   });
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeDotsMenu();
+    if(e.key === 'Escape') closeAccountMenu();
   });
 })();
 
